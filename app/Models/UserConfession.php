@@ -11,6 +11,12 @@ class UserConfession extends Authenticatable
     protected $table = 'user_confessions';
     protected $fillable = ['name', 'username', 'password'];
     protected $hidden = ['password', 'remember_token'];
+    protected function casts(): array
+    {
+        return [
+            'password' => 'hashed',
+        ];
+    }
     public $timestamps = true;
 
 }

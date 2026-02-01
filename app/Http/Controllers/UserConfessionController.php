@@ -7,22 +7,18 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Http;
-
 class UserConfessionController extends Controller
 {
     public function showRegistrationForm(){
-        $user = UserConfession::all();
         return view('Confession.Forms.register');
     }
     //
     public function registration(Request $request){
-        $user = UserConfession::all();
         
         $request->validate([
             'name' => 'required|string|max:255',
             'username' => 'required|string|unique:user_confessions,username|max:255',
-            'password' => 'required|string|min:5',
+            'password' => 'required|string|min:8|confirmed',
         
         ]);
 
